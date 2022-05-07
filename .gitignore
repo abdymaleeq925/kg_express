@@ -141,6 +141,7 @@ cython_debug/
 .idea/
 env
 /media
+/imgss
 
 .DS_Store
 .vscode/
