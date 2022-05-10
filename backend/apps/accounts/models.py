@@ -31,7 +31,7 @@ class User(AbstractUser):
     username = None
     middle_name = models.CharField('Отчество', max_length=150, blank=True)
     email = models.EmailField("Email", unique=True)
-    avatar = models.ImageField("Фото", upload_to="user_images/")
+    avatar = models.ImageField("Фото", upload_to="user_images/", null=True, blank=True)
     phone = models.CharField(
         'Номер телефона',
         null=True,

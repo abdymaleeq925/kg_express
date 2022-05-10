@@ -1,17 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Регистрация</title>
-</head>
-<body>
-    <h1>Регистрация</h1>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Создать</button>
-    </form>
-</body>
-</html>
+{% extends 'base_dashboard.html' %}
+
+{% block content %}
+
+<form class="card card-md" action="." method="post">
+    {% csrf_token %}
+    <div class="card-body">
+      <h2 class="card-title text-center mb-4">Создать новый аккаунт</h2>
+      <div class="mb-3">
+        <label class="form-label">Имя</label>
+        {{ form.first_name }}
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Фамилия</label>
+        {{ form.last_name }}
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Отчество</label>
+        {{ form.middle_name }}
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Электронная почта</label>
+        {{ form.email }}
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Номер телефона</label>
+        {{ form.phone }}
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Пароль</label>
+        <div class="input-group input-group-flat">
+                {{ form.password1 }}
+          <span class="input-group-text">
+            <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip"><!-- Download SVG icon from http://tabler-icons.io/i/eye -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="2" /><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" /></svg>
+            </a>
+          </span>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Повторите пароль</label>
+        <div class="input-group input-group-flat">
+                {{ form.password2 }}
+          <span class="input-group-text">
+            <a href="#" class="link-secondary" title="Show password" data-bs-toggle="tooltip"><!-- Download SVG icon from http://tabler-icons.io/i/eye -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="2" /><path d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7" /></svg>
+            </a>
+          </span>
+        </div>
+      </div>
+      <div class="form-footer">
+        <button type="submit" class="btn btn-primary w-100">Создать новый аккаунт</button>
+      </div>
+    </div>
+  </form>
+  <div class="text-center text-muted mt-3">
+    Уже есть аккаунт? <a href="{% url 'sign_in' %}" tabindex="-1">Войти</a>
+  </div>
+
+  {% endblock %}

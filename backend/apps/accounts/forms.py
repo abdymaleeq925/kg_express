@@ -11,11 +11,23 @@ class LoginForm(forms.Form):
     )
     password = forms.CharField(
         label="Пароль",
-        widget=forms.PasswordInput(attrs={"class":"form-control"})
+        widget=forms.PasswordInput(
+            attrs={
+                "class":"form-control",
+                "type":"password",
+                "autocomplete":"off",
+                "placeholder":"Пароль"
+                }
+            )
     )
     
-class UserRegistrationForm(forms.ModelForm):
-    
+class UserRegistrationForm(UserCreationForm):
+    password1 = forms.CharField(
+        widget = forms.PasswordInput(attrs={"class":"form-control"})
+    )
+    password2 = forms.CharField(
+        widget = forms.PasswordInput(attrs={"class":"form-control"})
+    )
     class Meta:
         model = User
         fields = [
@@ -24,8 +36,14 @@ class UserRegistrationForm(forms.ModelForm):
             'last_name',
             'middle_name',
             'phone',
-            'avatar',
         ]
+        widgets = {
+            "email": forms.EmailInput(attrs={"class":"form-control"}),
+            "first_name": forms.TextInput(attrs={"class":"form-control"}),
+            "last_name": forms.TextInput(attrs={"class":"form-control"}),
+            "middle_name": forms.TextInput(attrs={"class":"form-control"}),
+            "phone": forms.TextInput(attrs={"class":"form-control"}),
+        }
     
     # def clean_password2(self):
     #     cd = self.cleaned_data
